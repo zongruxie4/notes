@@ -31,6 +31,12 @@ To set an env var, eg:
 $env:RUST_LOG='debug,globset=warn'
 ```
 
+Or to set for the shell before running a command (will persist after command exits):
+
+```
+$env:GOOGLE_CLOUD_PROJECT="my-project"; $env:VERTEX_LOCATION="global"; opencode
+```
+
 To list env vars:
 
 ```

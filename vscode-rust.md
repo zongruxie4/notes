@@ -15,4 +15,6 @@ May [eventually be replaced by rust-analyzer](https://github.com/swellaby/vscode
 
 ## Debugger
 
-Use `?` for expressions. Expressions can't include function calls.
+Use `? expr` to evaluate an expressions. Expressions can't include function calls.
+
+Use `print expr` to print the Debug string.

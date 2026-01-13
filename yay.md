@@ -1,10 +1,24 @@
 # yay
 
-Build and install packages from the Arch User Repository (AUR).
+Build and install packages from the Arch User Repository (AUR) and official repository packages.
 
-For the most part, you can replace any `sudo pacman` commands with `yay`.
+A drop-in replacement for pacman. For the most part, you can replace any `sudo pacman` commands with `yay`.
 
 eg:
+
+Install, reinstall or upgrade a package:
+
+```
+yay -S <package_name>
+```
+
+This upgrades `-git` packages and re-installs packages if up to date.
+
+Install or upgrade a package only if its not up to date (this won't upgrade `-git` packages):
+
+```
+yay -S --needed <package_name>
+```
 
 Show packages out of date:
 
@@ -28,4 +42,10 @@ Once installed there is no distinction between packages installed through yay or
 
 ```
 pacman -Qm
+```
+
+Show build dir (defaults to ~/.cache/yay):
+
+```
+yay -Pg | jq .buildDir
 ```

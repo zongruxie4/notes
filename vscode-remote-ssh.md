@@ -21,7 +21,6 @@ And Extension Host will show:
 2024-02-29 08:27:43.601 [info] [resolveAuthority(ssh-remote,1)][13430ms] returned 127.0.0.1:65148
 ```
 
-
 ## Port forwarding
 
 - User forwarded: added by the user in the Ports View, and forwarded via the SOCKS proxy.
@@ -105,3 +104,27 @@ Check Output - Log (Shared):
 ```
 
 see [#7180](https://github.com/microsoft/vscode-remote-release/issues/7180)
+
+### Windows hosts
+
+Default shell needs to be cmd, clink, or PowerShell. [Git bash](https://github.com/microsoft/vscode-remote-release/issues/11388) doesn't work.
+
+[uname needs to be on the path](https://github.com/microsoft/vscode-remote-release/issues/11389). It comes with Git Bash, add it to the path with:
+
+```
+setx PATH "$([Environment]::GetEnvironmentVariable('Path','User'));C:\Program Files\Git\usr\bin"
+```
+
+You [can't connect](https://github.com/microsoft/vscode-remote-release/issues/11403) to a running server on a Windows host, ie:
+
+```
+[server] Checking C:\Users\Quickemu\.vscode-server\...\pid.txt for a running server...
+[server] Found running server (pid=5536)
+[server] Installing extensions...
+```
+
+Kill it first:
+
+```
+taskkill /PID 5536 /F
+```

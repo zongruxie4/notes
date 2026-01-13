@@ -83,8 +83,6 @@ To paste in the middle on a line at the current cursor position, enter insert mo
 
 ### Clipboard registers
 
-
-
 The default clipboard register in Vim is the **unnamed register `"`** (double quote).
 
 When you yank or delete without specifying a register:
@@ -125,7 +123,6 @@ On Linux (X11):
 
 `unnamedplus` is a Vim/Neovim clipboard option that automatically uses the system clipboard (`+` register) for all yank, delete, change, and put operations.
 
-
 ## File operations
 
 open file: `:e <filename>`  
@@ -144,10 +141,25 @@ Insert the [escape character](http://en.wikipedia.org/wiki/Escape_character#ASCI
 
 Insert at the end of file - `<ESC>GA`
 
+`Go` create a line after the last line of the file
+
 ## Delete
 
 delete to end of line - `dG`
-delete whole file - :1,$d
+delete without overwriting clipboard - `"_dd` (uses black hole register `_`)
+delete whole file - `:%d_`
+
+- `:` - command mode
+- `%` — Apply to the whole file.
+- `d` — Delete.
+- `_` — Into the black hole register.
+
+or normal mode: `gg"_dG`
+
+- `gg` — Go to the start of the file.
+- `"_` — Select the black hole register.
+- `dG` — Delete to the end of the file.
+
 delete previous word db
 delete next word dw
 
@@ -198,6 +210,9 @@ Open a new tabpage `:tab`
 `:set bg=dark` better color scheme  
 `:set nowrap` disable word wrapping
 
-## Config
+## Environment Variables
 
-`:echo $USER` show the value of the USER env var
+To show the value of an environment variable, use `:echo`, for example:
+
+`:echo $TERM`
+`:echo $USER`

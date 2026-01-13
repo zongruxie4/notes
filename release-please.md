@@ -39,6 +39,9 @@ Without updating changelog:
 
 1. Delete the existing tag. This will reset the release to a draft release.
 1. Push a commit that fixes the build.
+
+   - NB: this will create a release please PR from the beginning, because there is no tag for the latest version. But don't worry, the PR will be updated correctly on the first commit after publish.
+
 1. On the draft release set the new commit as the tag target and then click publish release.
 
 If you wish to regenerate the release notes then:
@@ -51,4 +54,3 @@ If you wish to regenerate the release notes then:
 ## Fix release notes
 
 On the release PR you can directly edit the PR description and CHANGELOG.md before merge.
-  
