@@ -120,3 +120,16 @@ Or remove parallel planning.
 `Pull request must be mergeable before running apply.` if atlantis/apply is a required status check (to prevent merging without applying) and its failed, then try removing it as a status check.
 
 `Error: Running atlantis apply is disabled.` check the global lock on the atlantis instance page.
+
+### Failed to install provider
+
+```
+│ Error: Failed to install provider
+│
+│ Error while installing hashicorp/aws v5.97.0: chmod
+│ .terraform/providers/registry.terraform.io/hashicorp/aws/5.97.0/linux_amd64/terraform-provider-aws_v5.97.0_x5:
+│ no such file or directory
+╵
+```
+
+Concurrency bug on Atlantis.. Rerun the plan.

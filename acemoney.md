@@ -109,7 +109,7 @@ CREATE TEMP TABLE ace AS SELECT * FROM read_csv_auto ('trans211224.csv');
 .mode csv
 .headers on
 -- nb this will overwrite the file
-.once trans.ace.csv 
+.once trans.ace.csv
 
 select '' as Num,strftime(Date, '%d/%m/%Y') as Date,
   regexp_replace(

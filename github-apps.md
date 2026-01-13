@@ -6,6 +6,10 @@ Some applications like the [GitHub CLI use an OAuth App](https://github.com/cli/
 
 Github Apps can act on behalf of a user, using [user-to-server requests](https://docs.github.com/en/developers/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps).
 
+## creating app
+
+Via [https://github.com/settings/apps](https://github.com/settings/apps).
+
 ## private keys
 
 The app has an RSA format (ie: PKCS #8) private key.

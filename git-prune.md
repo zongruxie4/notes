@@ -19,6 +19,8 @@ Local branches won't be deleted if:
 - they deviate from the closed/merged PR, eg: have additional commits
 - they can't be matched to a PR. If they are tracking branches see the next section.
 
+gd poi won't remove origin branches on closed (but not merged) PRs. You'll have to do that yourself.
+
 ## Stale tracking branches
 
 See stale tracking branches (ie: `origin/*`) that no longer exist on origin

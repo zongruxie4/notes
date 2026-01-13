@@ -57,6 +57,10 @@ jj config set --repo snapshot.auto-track "~(.claude/ | CLAUDE.md)"
 
 More info: see [arguments for auto snapshotting](https://github.com/jj-vcs/jj/issues/323#issuecomment-2571760838).
 
+## config
+
+To unset a config value use `JJ_CONFIG=/dev/null jj <command>` to ignore all config files.
+
 ## ignore
 
 To ignore a file (eg: uv.lock) in the working copy:
@@ -97,6 +101,11 @@ Use either to resolve a conflict.
 
 Because jj operates in a detacted head state, moving bookmarks **backwards** doesn't hide the previous tip in the log (unlike branches in git).
 
+To remove bookmarks use:
+
+- `delete` will be proagated to remotes on next push
+  -``forget` won't be propagated to remotes, just removed locally
+
 ## push
 
 To create a name implicitly on push
@@ -129,9 +138,44 @@ Conflicts can be generated on `jj git fetch` when a branch is merged and is dele
 
 2. edit the conflicted commit directly using `jj edit`
 
-3. use `jj resolve`
+3. use `jj resolve` or edit the conflict markers in the conflicted file directly with a text editor, or in a merge tool like VS Code.
 
-for more info see [Conflicts](https://jj-vcs.github.io/jj/latest/working-copy/#conflicts).
+For more info see [Conflicts](https://jj-vcs.github.io/jj/latest/working-copy/#conflicts).
+
+#### Conflict markers
+
+`jj` uses a hybrid conflict marker style by default:
+
+- Side 1 is shown as a **diff** from the base (what changed).
+- Side 2 is shown as a **snapshot** (the full content).
+
+Example:
+
+```
+<<<<<<<
+%%%%%%% Changes from base to side #1
+-grape
++grapefruit
++++++++ Contents of side #2
+GRAPE
+>>>>>>>
+```
+
+- `%%%%%%%` section: `-grape` means "grape" was removed in side 1. `+grapefruit` means "grapefruit" was added.
+- `+++++++` section: `GRAPE` is the content in side 2.
+
+To resolve these using `jj resolve` select the everything you want to apply to the base. In the above example if you just select `+GRAPE`, you still have `grape` from the base. So if you want side 2, select `-grape` and `+GRAPE`.
+
+### How do I deal with divergent changes ('??' after the change ID)?
+
+This happens when editing a change that has been pushed to the remote.
+Or, when fetching changes from the remote, and their are local changes too.
+
+To keep both changes, [generate a new change id](https://docs.jj-vcs.dev/latest/guides/divergence/#strategy-2-generate-a-new-change-id):
+
+```
+jj metaedit --update-change-id <commit-id>
+```
 
 ## [revsets](https://jj-vcs.github.io/jj/latest/revsets/)
 
@@ -143,12 +187,13 @@ for more info see [Conflicts](https://jj-vcs.github.io/jj/latest/working-copy/#c
 `x..` Revisions that are not ancestors of x, ie: not on the branch that ends with x (inclusive), eg: `main@origin..` are commits not in branch main@origin
 `heads(x)` within the set x, those commits that have no ancestors (they may have ancestors outside the set x).  
 `heads(::@ & bookmarks())` intersection of ancestors of current revision and bookmarks, that are heads (ie: have no ancestors in this set), eg: "bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"
+`::` or `all()` all commits
 
 [Built-in aliases](https://jj-vcs.github.io/jj/latest/revsets/#built-in-aliases):
 
 `trunk()` is head of default bookmark for default remote, eg: main@origin
 `immutable_heads()` is `present(trunk()) | tags() | untracked_remote_bookmarks()` ie: all the tips on origin.
-`immutable_heads()..` local bookmarks and commits not on trunk  
+`immutable_heads()..` local bookmarks and commits not on trunk
 
 ## split
 
@@ -207,6 +252,10 @@ There are three different ways of specifying which revisions to rebase:
 If no option is specified, it defaults to `-b @`.
 
 See [CLI reference: jj rebase](https://jj-vcs.github.io/jj/latest/cli-reference/#jj-rebase)
+
+## workspaces
+
+If you accidentally delete the default workspace it will get recreated.
 
 ## limitations
 

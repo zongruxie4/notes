@@ -33,7 +33,7 @@ Google SDKs require a project to be specified for API calls. This can be set via
 ### gcloud auth application-default login
 
 - Authenticates and creates an [Application Default Credentials](#application-default-credentials-adc) (ADC) file
-- Stored in _~/.config/gcloud/application_default_credentials.json_
+- Stored in _~/.config/gcloud/application_default_credentials.json_ (Linux/macOS) or _%APPDATA%\gcloud\application_default_credentials.json_ (Windows)
 - For use by client libraries/SDKs
 
 Does not have to be for the same project as `gcloud config set project` if the default project was changed after the ADC file was created.
@@ -48,7 +48,12 @@ gcloud auth application-default login --project=YOUR_PROJECT_ID
 
 Application Default Credentials are used by the [google-auth SDK](https://googleapis.dev/python/google-auth/latest/user-guide.html#application-default-credentials) when no explicit credentials are created by an application.
 
-Application Default Credentials are established by the `GOOGLE_APPLICATION_CREDENTIALS` env var pointing at a JSON credential configuration file. Defaults to _~/.config/gcloud/application_default_credentials.json_. If not present the VM metadata server will be checked.
+Application Default Credentials are established by the `GOOGLE_APPLICATION_CREDENTIALS` env var pointing at a JSON credential configuration file. Defaults to:
+
+- Linux/macOS: _~/.config/gcloud/application_default_credentials.json_
+- Windows: _%APPDATA%\gcloud\application_default_credentials.json_
+
+If not present the VM metadata server will be checked.
 
 See [How Application Default Credentials works](https://cloud.google.com/docs/authentication/application-default-credentials).
 

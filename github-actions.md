@@ -63,7 +63,7 @@ Allow a step, or set of steps, to be reused across jobs.
 Workflows triggered via a `pull_request_target` event:
 
 - have write permission to the target repository
-- can access to target repository secrets
+- can access target repository secrets
 - run in the context of the base of the pull request, not the merge commit, to prevent execution of unsafe code in the PR, ie: [actions/checkout will checkout main](https://github.com/actions/checkout/pull/321#issuecomment-702961848) for a PR targeting main.
 - don't require [explicit approval when running for first time contributors to the repo](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#controlling-changes-from-forks-to-workflows-in-public-repositories)
 
@@ -81,6 +81,7 @@ Useful for workflows that label or comment on PRs from forks. Avoid if you need 
 
 See
 
+- [zizmor - dangerous triggers](https://docs.zizmor.sh/audits/#dangerous-triggers)
 - [Events that trigger workflows - pull_request_target](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request_target)
 - [Keeping your GitHub Actions and workflows secure Part 1: Preventing pwn requests](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)
 - [git-auto-commit-action - Use in forks from public repositories](https://github.com/stefanzweifel/git-auto-commit-action?tab=readme-ov-file#use-in-forks-from-public-repositories)
