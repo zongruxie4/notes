@@ -49,9 +49,15 @@ sudo systemctl start sshd
 The 2012 MacBook Pro has two graphics processors:
 
 - Intel integrated GPU (for basic graphics)
-- Dedicated NVIDIA [GeForce GT 650M](https://en.wikipedia.org/wiki/GeForce_600_series) GPU (for better performance)
+- Dedicated NVIDIA [GeForce GT 650M](https://en.wikipedia.org/wiki/GeForce_600_series) GPU (for better performance) aka dGPU
 
 Without working drivers, the dedicated GPU can't manage power correctly, preventing the laptop from suspending.
+
+```
+sudo cat /sys/kernel/debug/dri/0/name /sys/kernel/debug/dri/1/name
+nouveau dev=0000:01:00.0 unique=0000:01:00.0
+i915 dev=0000:00:02.0 unique=0000:00:02.0
+```
 
 ### The NVIDIA Driver Problem
 
@@ -163,3 +169,17 @@ For hardware issues check `dmesg`.
 ## Bluetooth
 
 After pairing and connecting to an audio device, for it to become available restart Pulse Audio using CMD+ALT+SPACE, Update -> Hardware -> Audio. You can then select the device in Pulse Audio (via the Speaker icon in the status bar).
+
+## Sunshine
+
+When connecting to from moonlight I get a black screen and the following in the [sunshine](https://github.com/LizardByte/Sunshine) server logs:
+
+```
+Error: Couldn't import RGB Image: 00003009
+```
+
+Which is the EGL constant for [EGL_BAD_MATCH](https://developer.android.com/reference/javax/microedition/khronos/egl/EGL10).
+
+On the server I'm running hyprland.
+
+Something to do with my hybrid GPU setup and/or drivers.

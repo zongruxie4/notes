@@ -68,22 +68,30 @@ Watch memory on pid 12611, with datetime
 
 See also `pidstat -r 1` which will show a rolling summary of changes to page fault and memory stats by pid
 
+## pstree (GNU)
+
 See all child threads in a tree created by PID 4099, collapsing threads with the same name
 
 ```
 pstree 4099
 ```
 
-See all child threads created by PID 4099, individually with their PID
+See all child threads created by PID 4099, with their PID
 
 ```
 pstree -p 4099
 ```
 
-See parents, and children, of PID 4099, individually with their PID
+See parents, and children, of PID 4099, with their PID
 
 ```
 pstree -s -p 4099
+```
+
+See parents of the current bash process
+
+```
+pstree -s $$
 ```
 
 Show child processes of 4099

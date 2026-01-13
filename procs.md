@@ -1,5 +1,7 @@
 # procs
 
+[procs](https://github.com/dalance/procs) is a replacement for ps.
+
 Show rss for chrome
 
 ```
