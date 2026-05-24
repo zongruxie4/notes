@@ -18,6 +18,12 @@ To enable login via public key:
 sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 ```
 
+Disable password login:
+
+```
+sudo sed -i 's/^#\?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/sshd_config
+```
+
 Restart after changing config: `sudo systemctl restart sshd.service`
 
 To enable verbose logging:
