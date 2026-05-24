@@ -124,7 +124,7 @@ Likely culprits:
 - Vscode temp files
 - Dynamic Wallpapers
 
-Dynamic wallpapers are downloaded in the background as .tmp files into `/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/com.apple.idleassetsd` (requires sudo) then moved to `/Library/Application\ Support/com.apple.idleassetsd` as .mov files. The set of .mov files are managed and my grow and shrink.
+Dynamic wallpapers are downloaded in the background as .tmp files into `/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/com.apple.idleassetsd` (requires sudo) then moved to `~/Library/Application\ Support/com.apple.wallpaper/aerials/videos` as .mov files. The set of .mov files are managed and my grow and shrink.
 
 If you delete the .mov files they will be re-downloaded.
 
