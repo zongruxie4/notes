@@ -25,6 +25,17 @@ Read private key in PKCS #8 format:
 op read op://Personal/awesome.private-key/'Private Key'
 ```
 
+Set github secrets:
+
+```
+op read op://Personal/my-gh-app.appid/notesPlain | gh secret set APP_ID
+op read op://Personal/my-gh-app.private-key/'Private Key' | gh secret set APP_PRIVATE_KEY
+```
+
 ## Connecting to other Browsers
 
 `Settings -> Browser -> Add Browser` this allows browsers that have the extension installed to access the 1password native app. Without this, the browser extension can still access the vault but it needs to do an unlock itself.
+
+```
+
+```

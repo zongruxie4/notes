@@ -53,6 +53,8 @@ In CloudFormation, inline policies can be specified along with the role or via a
 
 In terraform, [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) are managed policies and [aws_iam_role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) are inline policies.
 
+`PutRolePolicy` is used for inline policies. It adds or updates a JSON policy document directly embedded into a specific IAM role. For managed policies, `AttachRolePolicy` is used.
+
 ## Inline policies
 
 List names of inline policies

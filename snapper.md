@@ -41,3 +41,23 @@ Sync with boot loader
 ```
 limine-snapper-sync
 ```
+
+## Deletions
+
+Blocks are kept whilst there are still pointers to them from a snapshot.
+
+So to reclaim disk space, delete the snapshots that point to that block. Snapshots do not rely on each other in a chain, so it's safe to delete earlier snapshots if you no longer need them.
+
+Delete old snapshots:
+
+```
+sudo snapper delete 1-49 --sync
+```
+
+Btrfs normally asynchronously frees space after deleting snapshots. With the `--sync` option snapper will wait until the space once used by the deleted snapshots is actually available again.
+
+Instead of `--sync` you can trigger the cleanup service:
+
+```
+sudo systemctl start snapper-cleanup.service
+```

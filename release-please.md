@@ -14,14 +14,16 @@ npx release-please@latest release-pr --token=$(gh auth -h github.com token) --re
 
 ## Config file
 
-See the options and their defaults [here](https://github.com/googleapis/release-please/blob/main/docs/manifest-releaser.md#configfile).
+See the options and their [defaults](https://github.com/googleapis/release-please/blob/main/docs/manifest-releaser.md#configfile).
 
-Whilst < 1.0.0 to [bump minor for breaking changes](https://github.com/googleapis/release-please/blob/611db3d5628d1ff4cd7c40259894daf0c13f8e17/docs/manifest-releaser.md?plain=1#L167), and [bump patch for new features](https://github.com/googleapis/release-please/blob/611db3d5628d1ff4cd7c40259894daf0c13f8e17/docs/manifest-releaser.md?plain=1#L171) set:
+Whilst < 1.0.0 use [bump minor for breaking changes](https://github.com/googleapis/release-please/blob/611db3d5628d1ff4cd7c40259894daf0c13f8e17/docs/manifest-releaser.md?plain=1#L167), and [bump patch for new features](https://github.com/googleapis/release-please/blob/611db3d5628d1ff4cd7c40259894daf0c13f8e17/docs/manifest-releaser.md?plain=1#L171) set:
 
 ```json
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
 ```
+
+If there are no tags then the first release may be 0.0.0 despite these settings. Create the first v0.0.0 tag manually, so that the first bump will be v0.0.1.code
 
 ## PR remained the same
 
