@@ -169,7 +169,7 @@ To resolve these using `jj resolve` select the everything you want to apply to t
 ### How do I deal with divergent changes ('??' after the change ID)?
 
 This happens when editing a change that has been pushed to the remote.
-Or, when fetching changes from the remote, and their are local changes too.
+Or, when fetching changes from the remote, and there are local changes too.
 
 To keep both changes, [generate a new change id](https://docs.jj-vcs.dev/latest/guides/divergence/#strategy-2-generate-a-new-change-id):
 
@@ -184,7 +184,7 @@ jj metaedit --update-change-id <commit-id>
 `@+` the child (next) revision.  
 `::x` ancestors of x, including x (ie: branches ending in x)  
 `x::` descendants of x, including x.
-`x..` Revisions that are not ancestors of x, ie: not on the branch that ends with x (inclusive), eg: `main@origin..` are commits not in branch main@origin
+`x..` Revisions that are not ancestors of x, ie: not on the branch that ends with x (inclusive), eg: `main@origin..` are commits not in branch main@origin. `main..@` will show commits on the current branch until main, ie: that are ancestors of `@` but not ancestors of main. `main..` shows all commits not on `main`, so it can include changes from other branches, not just your current one.
 `heads(x)` within the set x, those commits that have no ancestors (they may have ancestors outside the set x).  
 `heads(::@ & bookmarks())` intersection of ancestors of current revision and bookmarks, that are heads (ie: have no ancestors in this set), eg: "bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"
 `::` or `all()` all commits
